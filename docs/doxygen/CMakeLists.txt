@@ -59,7 +59,10 @@ add_custom_target(doxygen_target ALL DEPENDS ${BUILT_DIRS})
 if(enable_latex_docs)
    add_custom_command(
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.pdf
-	COMMAND make refman.pdf
+	COMMAND ${LATEX_COMPILER} ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.tex
+	COMMAND ${LATEX_COMPILER} ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.tex
+	COMMAND ${LATEX_COMPILER} ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.tex
+	COMMAND ${DVIPDF_CONVERTER} ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.dvi
 	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/latex
 	DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/latex/Makefile
 	COMMENT "Generating PDF documentation with latex")
